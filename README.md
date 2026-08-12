@@ -1,6 +1,6 @@
 # Expense Tracker
 
-A simple java console application for tracking expenses and calculating total spending
+A simple java console application for tracking expenses and calculating total spending.
 
 ## Features
 - Add an expense with a description and amount
