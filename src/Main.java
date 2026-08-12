@@ -52,34 +52,68 @@ public class Main {
         // Creating a scanner to accept user input
         Scanner scanner = new Scanner(System.in);
 
-        // Request user input for expense description
-        System.out.print("Enter expense description: ");
-        String description = scanner.nextLine();
+        // Creating a boolean to run program until user ends it
+        boolean running = true;
 
-        // Request user input for expense amount
-        System.out.print("Enter expense amount: ");
-        double amount = scanner.nextDouble();
+        // Menu
+        while (running) {
+            System.out.println("\n--- Expense Tracker ---");
+            System.out.println("1. Add Expense");
+            System.out.println("2. View Expenses");
+            System.out.println("3. View Total");
+            System.out.println("4. Exit");
+            System.out.println("Choose an option: ");
 
-        // Add user generated expenses to the ArrayList
-        expenses.add(new Expense(description, amount));
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        // Print items including user added input
-        for (Expense expense : expenses) {
-            System.out.println(expense.getDescription() + ": $" + expense.getAmount());
+            switch (choice) {
+                case 1:
+                    // Request user input for expense description
+                    System.out.print("Enter expense description: ");
+                    String description = scanner.nextLine();
+
+                    // Request user input for expense amount
+                    System.out.print("Enter expense amount: ");
+                    double amount = scanner.nextDouble();
+
+                    // Add user generated expenses to the ArrayList
+                    expenses.add(new Expense(description, amount));
+
+                    System.out.println("Expense Added!");
+                    break;
+
+                case 2:
+                    System.out.println("\n--- Expenses ---");
+
+                    // Print expenses
+                    for (Expense expense : expenses) {
+                        System.out.println(expense.getDescription() + ": $" + expense.getAmount());
+                    }
+                    break;
+
+                case 3:
+                    // zeroing total
+                    total = 0;
+
+                    // Add up new total
+                    for (Expense expense : expenses) {
+                        total += expense.getAmount();
+                    }
+
+                    // Display total
+                    System.out.println("Total: $" + total);
+                    break;
+
+                case 4:
+                    running = false;
+                    System.out.println("Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("That option is not implemented yet.");
+            }
         }
-
-        // zeroing total
-        total = 0;
-
-        // Add up new total
-        for (Expense expense : expenses) {
-            total += expense.getAmount();
-        }
-
-        // Display new total
-        System.out.println("Total: $" + total);
-
-
     }
 
     // Method to add an expense to the given total
